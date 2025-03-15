@@ -7,7 +7,7 @@ import { DistributorsModule } from './distributors/distributors.module';
 import { AssistantsModule } from './assistants/assistants.module';
 import { UsersModule } from './users/users.module';
 import { FAQModule } from './fap/faq.module';
-
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -16,6 +16,7 @@ import { FAQModule } from './fap/faq.module';
     SupabaseModule,
     DistributorsModule,
     AssistantsModule,
+    AuthModule,
     UsersModule,
     FAQModule
   ],

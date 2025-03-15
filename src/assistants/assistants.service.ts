@@ -91,6 +91,7 @@ export class AssistantsService {
           last_name: data.last_name,
           phone: data.phone,
           email: data.email,
+          city: data.city,
         };
       } catch (userError) {
         // Si falla la creación del usuario, eliminamos el asistente

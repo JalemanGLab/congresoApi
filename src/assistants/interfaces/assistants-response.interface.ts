@@ -4,4 +4,5 @@ export interface AssistantResponse {
   last_name: string;
   phone: string;
   email: string;
+  city: string;
 }

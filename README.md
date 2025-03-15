@@ -182,11 +182,3 @@ PUT /distributors/:id
 }
 ```
 
-### Códigos de Respuesta
-
-| Código | Descripción |
-|--------|-------------|
-| 200    | Operación exitosa |
-| 201    | Distribuidor creado exitosamente |
-| 400    | Datos inválidos |
-| 404    | Distribuidor no encontrado |

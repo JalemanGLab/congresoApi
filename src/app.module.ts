@@ -5,6 +5,8 @@ import { AppService } from './app.service';
 import { SupabaseModule } from './supabase/supabase.module';
 import { DistributorsModule } from './distributors/distributors.module';
 import { AssistantsModule } from './assistants/assistants.module';
+import { UsersModule } from './users/users.module';
+import { FAQModule } from './fap/faq.module';
 
 @Module({
   imports: [
@@ -13,7 +15,9 @@ import { AssistantsModule } from './assistants/assistants.module';
     }),
     SupabaseModule,
     DistributorsModule,
-    AssistantsModule
+    AssistantsModule,
+    UsersModule,
+    FAQModule
   ],
   controllers: [AppController],
   providers: [AppService],

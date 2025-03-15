@@ -182,3 +182,156 @@ PUT /distributors/:id
 }
 ```
 
+
+## Módulo Asistentes
+
+### Estructura de Datos
+```typescript
+{
+  id: number;              // Identificador único
+  first_name: string;      // Nombre del asistente
+  last_name: string;       // Apellido del asistente
+  phone: string;          // Teléfono de contacto
+  email: string;          // Correo electrónico
+  main_procedure: string;  // Procedimiento principal
+  product_brand: string;   // Marca del producto
+  weekly_procedure: string; // Procedimiento semanal
+  contact: boolean;        // Estado de contacto
+  payment: string;         // Información de pago
+  payment_update: string;  // Fecha de actualización del pago
+  entry: boolean;         // Estado de entrada
+  entry_datetime: string; // Fecha y hora de entrada
+  created_at: string;     // Fecha de creación
+}
+```
+
+### Endpoints Disponibles
+
+#### 1. Obtener Asistentes
+```http
+GET /assistants
+```
+
+**Ejemplo de respuesta:**
+```json
+[
+  {
+    "id": 1,
+    "first_name": "Juan",
+    "last_name": "Pérez",
+    "phone": "1234567890",
+    "email": "juan@ejemplo.com",
+    "main_procedure": "Procedimiento A",
+    "product_brand": "Marca X",
+    "weekly_procedure": "Semanal 1",
+    "contact": true,
+    "payment": "efectivo",
+    "payment_update": "2024-03-15T00:00:00Z",
+    "entry": true,
+    "entry_datetime": "2024-03-15T00:00:00Z",
+    "created_at": "2024-03-15T00:00:00Z"
+  }
+]
+```
+
+#### 2. Obtener un Asistente
+```http
+GET /assistants/:id
+```
+
+**Ejemplo de respuesta:**
+```json
+{
+  "id": 1,
+  "first_name": "Juan",
+  "last_name": "Pérez",
+  "phone": "1234567890",
+  "email": "juan@ejemplo.com",
+  "main_procedure": "Procedimiento A",
+  "product_brand": "Marca X",
+  "weekly_procedure": "Semanal 1",
+  "contact": true,
+  "payment": "efectivo",
+  "payment_update": "2024-03-15T00:00:00Z",
+  "entry": true,
+  "entry_datetime": "2024-03-15T00:00:00Z",
+  "created_at": "2024-03-15T00:00:00Z"
+}
+```
+
+#### 3. Crear Asistente
+```http
+POST /assistants
+```
+
+**Body requerido:**
+```json
+{
+  "first_name": "Juan",
+  "last_name": "Pérez",
+  "phone": "1234567890",
+  "email": "juan@ejemplo.com",
+  "main_procedure": "Procedimiento A",
+  "product_brand": "Marca X",
+  "weekly_procedure": "Semanal 1",
+  "contact": true,
+  "payment": "efectivo",
+  "entry": true,
+  "entry_datetime": "2024-03-15T00:00:00Z"
+}
+```
+
+**Ejemplo de respuesta:**
+```json
+{
+  "id": 1,
+  "first_name": "Juan",
+  "last_name": "Pérez",
+  "phone": "1234567890",
+  "email": "juan@ejemplo.com",
+  "main_procedure": "Procedimiento A",
+  "product_brand": "Marca X",
+  "weekly_procedure": "Semanal 1",
+  "contact": true,
+  "payment": "efectivo",
+  "payment_update": "2024-03-15T00:00:00Z",
+  "entry": true,
+  "entry_datetime": "2024-03-15T00:00:00Z",
+  "created_at": "2024-03-15T00:00:00Z"
+}
+```
+
+#### 4. Actualizar Asistente
+```http
+PUT /assistants/:id
+```
+
+**Body:**
+```json
+{
+  "phone": "0987654321",
+  "contact": false,
+  "payment": "tarjeta"
+}
+```
+
+**Ejemplo de respuesta:**
+```json
+{
+  "id": 1,
+  "first_name": "Juan",
+  "last_name": "Pérez",
+  "phone": "0987654321",
+  "email": "juan@ejemplo.com",
+  "main_procedure": "Procedimiento A",
+  "product_brand": "Marca X",
+  "weekly_procedure": "Semanal 1",
+  "contact": false,
+  "payment": "tarjeta",
+  "payment_update": "2024-03-15T00:00:00Z",
+  "entry": true,
+  "entry_datetime": "2024-03-15T00:00:00Z",
+  "created_at": "2024-03-15T00:00:00Z"
+}
+```
+

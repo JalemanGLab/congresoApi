@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SupabaseModule } from './supabase/supabase.module';
 import { DistributorsModule } from './distributors/distributors.module';
+import { AssistantsModule } from './assistants/assistants.module';
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { DistributorsModule } from './distributors/distributors.module';
       isGlobal: true,
     }),
     SupabaseModule,
-    DistributorsModule
+    DistributorsModule,
+    AssistantsModule
   ],
   controllers: [AppController],
   providers: [AppService],

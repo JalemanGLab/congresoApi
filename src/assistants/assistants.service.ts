@@ -32,25 +32,6 @@ export class AssistantsService {
       .eq('id', id)
       .single();
 
-      
-
-      let { data: assistant, error: assistantError } = await this.supabaseService.client
-      .from('assistant')
-      .select('*')
-      .eq('email', 'juan@ejemplo.com')
-      .single();
-
-
-      if(assistantError){
-        console.log('Error al obtener el asistente', assistantError);
-      }else{
-        console.log('Asistente obtenido', assistant);
-      }
-
-     
-
-    
-
     if (!data) {
       throw new NotFoundException(`Asistente con ID ${id} no encontrado`);
     }
@@ -120,7 +101,6 @@ export class AssistantsService {
         throw userError;
       }
     } catch (error) {
-      console.log(error);
       if (error instanceof ConflictException) {
         throw error;
       }

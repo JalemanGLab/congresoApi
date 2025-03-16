@@ -7,20 +7,26 @@ export class SupabaseService {
   private supabase: SupabaseClient;
 
   constructor(private configService: ConfigService) {
-    this.supabase = createClient(
-      this.configService.get<string>('SUPABASE_URL')!,
-      this.configService.get<string>('SUPABASE_ANON_KEY')!
-    );
+    const supabaseUrl = this.configService.get<string>('SUPABASE_URL');
+    const supabaseKey = this.configService.get<string>('SUPABASE_ANON_KEY');
+
+    if (!supabaseUrl) {
+      throw new Error('SUPABASE_URL no está definido en las variables de entorno');
+    }
+
+    if (!supabaseKey) {
+      throw new Error('SUPABASE_ANON_KEY no está definido en las variables de entorno');
+    }
+
+    this.supabase = createClient(supabaseUrl, supabaseKey);
   }
 
   get client() {
     return this.supabase;
   }
 
-
   async testConnection() {
     try {
-      // Intentamos obtener el conteo de usuarios
       const { count, error } = await this.supabase
         .from('user')
         .select('*', { count: 'exact', head: true });
@@ -50,6 +56,4 @@ export class SupabaseService {
       };
     }
   }
-
-  
 }

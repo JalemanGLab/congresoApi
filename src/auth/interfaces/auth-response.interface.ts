@@ -1,11 +1,10 @@
-export interface User {
+export interface AuthResponse {
+  access_token: string;
+  user: {
     identification: number;
     first_name: string;
     last_name: string;
-    phone: string;
     email: string;
-    password: string;
     rol: string;
-    created_at: string;
-    token: string;
-  }
+  };
+}

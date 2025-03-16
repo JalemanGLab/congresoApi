@@ -11,7 +11,8 @@ export class EmailService {
   constructor(
     private readonly pdfService: PDFService // Inyectamos el PDFService
   ) {
-    const apiKey = process.env.EMAIL_API_KEY;
+    //const apiKey = process.env.EMAIL_API_KEY;
+    const apiKey = 'mlsn.5d154dfae3f85787915e229a904f7d3c146eab812b096afe8bacfe770cc7621e';
     if (!apiKey) {
       throw new Error('EMAIL_API_KEY no está definido en las variables de entorno');
     }

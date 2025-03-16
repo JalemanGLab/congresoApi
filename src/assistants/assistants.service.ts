@@ -6,8 +6,7 @@ import {
 } from '@nestjs/common';
 import { SupabaseService } from '../supabase/supabase.service';
 import { UsersService } from '../users/users.service';
-import { Assistant } from './interfaces/assistants.interface';
-import { AssistantResponse } from './interfaces/assistants-response.interface';
+import { Assistant , AssistantResponse } from './interfaces/assistants.interface';
 
 @Injectable()
 export class AssistantsService {
@@ -32,6 +31,25 @@ export class AssistantsService {
       .select('*')
       .eq('id', id)
       .single();
+
+      
+
+      let { data: assistant, error: assistantError } = await this.supabaseService.client
+      .from('assistant')
+      .select('*')
+      .eq('email', 'juan@ejemplo.com')
+      .single();
+
+
+      if(assistantError){
+        console.log('Error al obtener el asistente', assistantError);
+      }else{
+        console.log('Asistente obtenido', assistant);
+      }
+
+     
+
+    
 
     if (!data) {
       throw new NotFoundException(`Asistente con ID ${id} no encontrado`);

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { SupabaseService } from '../supabase/supabase.service';
 import { Distributor } from './interfaces/distributor.interface';
 
@@ -29,8 +29,20 @@ export class DistributorsService {
       .select('*')
       .eq('id', id)
       .single();
-    
-    if (error) throw error;
+    // Si no hay error pero tampoco datos, significa que no se encontró el distribuidor
+    if (!data) {
+      throw new NotFoundException(`Distribuidor con ID ${id} no encontrado`);
+      // O si prefieres devolver null en lugar de lanzar error:
+      // return null;
+      // O un array vacío:
+      // return [];
+    }
+
+    if (error) {
+      // Aquí puedes manejar otros tipos de errores si ocurren
+      throw error;
+    }
+
     return data;
   }
 

@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { SupabaseService } from '../supabase/supabase.service';
 import { Login } from './interfaces/auth.interface';
@@ -71,6 +75,77 @@ export class AuthService {
 
     return {
       message: 'Sesión cerrada correctamente',
+    };
+  }
+
+  async passwordRecovery(email: string): Promise<{ message: string }> {
+    const { data, error } = await this.supabaseService.client
+      .from('users_profile')
+      .select('identification, email')
+      .eq('email', email)
+      .single();
+
+    if (error || !data) {
+      throw new BadRequestException('Correo electrónico no encontrado');
+    }
+
+    // Generar código OTP de 6 dígitos
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+    // Establecer fecha de expiración (5 minutos desde ahora)
+    const otpExpired = new Date();
+    otpExpired.setMinutes(otpExpired.getMinutes() + 5);
+
+    // Actualizar en la base de datos
+    const { error: updateError } = await this.supabaseService.client
+      .from('users_profile')
+      .update({
+        otp: otp,
+        otp_expired: otpExpired.toISOString(),
+      })
+      .eq('email', email)
+      .select()
+      .single();
+
+    if (updateError) {
+      throw new BadRequestException(
+        'Error al generar el código de recuperación',
+      );
+    }
+
+    // TODO: Aquí se debería implementar el envío del código por correo
+
+    return {
+      message: 'Se ha enviado un código de verificación a tu correo',
+    };
+  }
+
+  async validateOtp(email: string, otp: string): Promise<{ message: string }> {
+    const { data: user, error } = await this.supabaseService.client
+      .from('users_profile')
+      .select('otp, otp_expired')
+      .eq('email', email)
+      .single();
+
+    if (error || !user) {
+      throw new BadRequestException('Correo electrónico no encontrado');
+    }
+
+    // Verificar si el código ha expirado
+    const now = new Date();
+    const expiration = new Date(user.otp_expired);
+
+    if (now > expiration) {
+      throw new BadRequestException('El código ha expirado, por favor solicite un nuevo código');
+    }
+
+    // Verificar si el código coincide
+    if (user.otp !== otp) {
+      throw new BadRequestException('Código no válido, por favor ingrese un código valido');
+    }
+
+    return {
+      message: 'Código válido',
     };
   }
 }

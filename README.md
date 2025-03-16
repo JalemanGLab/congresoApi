@@ -419,6 +419,13 @@ POST /auth/login
   }
 }
 ```
+### Notas de Seguridad
+
+- El token JWT expira después de 15 minutos
+- El token se almacena en la base de datos y se invalida al hacer logout
+- Se requiere el token en el header Authorization para acceder a rutas protegidas
+- Las contraseñas se almacenan hasheadas usando bcrypt
+
 
 #### 2. Cerrar Sesión
 
@@ -440,9 +447,51 @@ Authorization: Bearer <token>
 }
 ```
 
-### Notas de Seguridad
+#### 3. Recuperar Contraseña
 
-- El token JWT expira después de 15 minutos
-- El token se almacena en la base de datos y se invalida al hacer logout
-- Se requiere el token en el header Authorization para acceder a rutas protegidas
-- Las contraseñas se almacenan hasheadas usando bcrypt
+```http
+POST /auth/recovery
+```
+
+**Body requerido:**
+
+```json
+{
+  "email": "usuario@ejemplo.com"
+}
+```
+
+**Ejemplo de respuesta:**
+
+```json
+{
+  {
+    "message": "Se ha enviado un código de verificación a tu correo"
+  }
+}
+```
+
+#### 4. Validar Codigo OTP
+
+```http
+POST /auth/validate-otp
+```
+
+**Body requerido:**
+
+```json
+{
+  "email": "usuario@ejemplo.com",
+  "otp": "123456"
+}
+```
+
+**Ejemplo de respuesta:**
+
+```json
+{
+  {
+    "message": "Código válido"
+}
+}
+

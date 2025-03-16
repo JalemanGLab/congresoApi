@@ -20,4 +20,15 @@ export class AuthController {
   async logout(@Req() req) {
     return this.authService.logout(req.user.id);
   }
+
+  @Post('recovery')
+  async passwordRecovery(@Body() body: { email: string }) {
+    
+    return this.authService.passwordRecovery(body.email);
+  }
+
+  @Post('validate-otp')
+  async validateOtp(@Body() body: { email: string, otp: string }) {
+    return this.authService.validateOtp(body.email, body.otp);
+  }
 }

@@ -23,7 +23,7 @@ export class EmailService {
 
   async sendTicketEmail(email: string, ticketNumber: number, ticketOptions: TicketOptions): Promise<EmailResponse> {
     try {
-      console.log('Iniciando proceso de envío para:', email);
+
       
       // Usamos el PDFService que ya tiene toda la lógica
       const pdfBuffer = await this.pdfService.generateEventTicket(ticketNumber, ticketOptions);
@@ -61,9 +61,9 @@ export class EmailService {
         .setText(`Tu entrada para ${ticketOptions.eventName} está lista. Por favor, revisa el archivo PDF adjunto.`)
         .setAttachments(attachments);
 
-      console.log('Enviando email...');
+     
       const response = await this.mailerSend.email.send(emailParams);
-      console.log('Respuesta del servidor:', response);
+      
 
       return {
         message: 'Email con entrada enviado exitosamente',

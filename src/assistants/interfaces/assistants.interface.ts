@@ -4,6 +4,8 @@ export interface Assistant {
   last_name: string;
   phone: string;
   email: string;
+  city: string;
+  distributor: string;
   main_procedure: string;
   product_brand: string;
   weekly_procedure: string;

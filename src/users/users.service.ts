@@ -72,7 +72,16 @@ export class UsersService {
       )
       .single();
 
-    if (error) throw error;
+    if (error) {
+      if (error.code === '23505') {
+        if (error.message.includes('users_profile_pkey')) {
+          throw new ConflictException(
+            'Ya hay un usuario con este número de identificación',
+          );
+        }
+      }
+      throw error;
+    }
     return data;
   }
 

@@ -19,8 +19,8 @@ export class AssistantsController {
   constructor(private readonly assistantsService: AssistantsService) {}
 
   @Get()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin', 'superadmin')
+  //@UseGuards(JwtAuthGuard, RolesGuard)
+  //@Roles('admin', 'superadmin')
   findAll() {
     return this.assistantsService.findAll();
   }

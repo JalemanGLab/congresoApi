@@ -7,6 +7,9 @@ import { DistributorsModule } from './distributors/distributors.module';
 import { AssistantsModule } from './assistants/assistants.module';
 import { UsersModule } from './users/users.module';
 import { FAQModule } from './fap/faq.module';
+import { EmailModule } from './email/email.module';
+import { QRModule } from './qr/qr.module';
+
 import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
@@ -18,7 +21,9 @@ import { AuthModule } from './auth/auth.module';
     AssistantsModule,
     AuthModule,
     UsersModule,
-    FAQModule
+    FAQModule,
+    EmailModule,
+    QRModule
   ],
   controllers: [AppController],
   providers: [AppService],

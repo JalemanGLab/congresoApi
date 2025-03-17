@@ -3,7 +3,7 @@ import {
   NotFoundException,
   ConflictException,
 } from '@nestjs/common';
-import { SupabaseService } from '../supabase/supabase.service';
+import { SupabaseService } from '../../config/supabase/supabase.service';
 import { User } from './interfaces/user.interfaces';
 import * as bcrypt from 'bcrypt';
 

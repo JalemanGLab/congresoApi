@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { EmailController } from './email.controller';
 import { EmailService } from './email.service';
-import { PDFModule } from '../pdf/pdf.module';
+import { PDFModule } from '../../common/services/pdf/pdf.module';
 
 
 @Module({

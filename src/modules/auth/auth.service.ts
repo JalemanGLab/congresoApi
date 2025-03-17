@@ -4,7 +4,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { SupabaseService } from '../supabase/supabase.service';
+import { SupabaseService } from '../../config/supabase/supabase.service';
 import { Login } from './interfaces/auth.interface';
 import { AuthResponse } from './interfaces/auth-response.interface';
 import * as bcrypt from 'bcrypt';

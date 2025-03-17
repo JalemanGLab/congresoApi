@@ -2,15 +2,16 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { SupabaseModule } from './supabase/supabase.module';
-import { DistributorsModule } from './distributors/distributors.module';
-import { AssistantsModule } from './assistants/assistants.module';
-import { UsersModule } from './users/users.module';
-import { FAQModule } from './fap/faq.module';
-import { EmailModule } from './email/email.module';
-import { QRModule } from './qr/qr.module';
+import { SupabaseModule } from './config/supabase/supabase.module';
+import { DistributorsModule } from './modules/distributors/distributors.module';
+import { AssistantsModule } from './modules/assistants/assistants.module';
+import { UsersModule } from './modules/users/users.module';
+import { FAQModule } from './modules/fap/faq.module'
+import { EmailModule } from './config/email/email.module';
+import { QRModule } from './common/services/qr/qr.module';
+import { PDFModule } from './common/services/pdf/pdf.module';
+import { AuthModule } from './modules/auth/auth.module';
 
-import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -23,7 +24,8 @@ import { AuthModule } from './auth/auth.module';
     UsersModule,
     FAQModule,
     EmailModule,
-    QRModule
+    QRModule,
+    PDFModule
   ],
   controllers: [AppController],
   providers: [AppService],

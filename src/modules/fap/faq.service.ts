@@ -1,6 +1,6 @@
 // src/faq/faq.service.ts
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { SupabaseService } from '../supabase/supabase.service';
+import { SupabaseService } from '../../config/supabase/supabase.service';
 import { FAQ } from './interfaces/faq.intercafes';
 
 @Injectable()

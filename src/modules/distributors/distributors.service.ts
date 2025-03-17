@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { SupabaseService } from '../supabase/supabase.service';
+import { SupabaseService } from '../../config/supabase/supabase.service';
 import { Distributor } from './interfaces/distributor.interface';
 
 @Injectable()

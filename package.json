@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "railway": "yarn install && yarn build && yarn start:prod",
-    "build": "nest build",
+    "build": "nest build --path ./tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",

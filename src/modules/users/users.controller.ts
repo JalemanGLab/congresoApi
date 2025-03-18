@@ -10,9 +10,9 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './interfaces/user.interfaces';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guards';
-import { RolesGuard } from 'src/guard/roles.guard';
-import { Roles } from 'decorator/roles.decorator';
+import { JwtAuthGuard } from '../../modules/auth/guards/jwt-auth.guards';
+import { RolesGuard } from '../../common/guard/roles.guard';
+import { Roles } from '../../common/decorator/roles.decorator';
 
 @Controller('users')
 export class UsersController {

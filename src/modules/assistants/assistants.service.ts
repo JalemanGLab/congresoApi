@@ -53,43 +53,43 @@ export class AssistantsService {
 				payment_hour: '10:00',
 			}
 
-			// //Registramos el asistente 
-			// const { data: assistantData, error: assistantError } = await this.supabaseService.client
-			// 	.from('assistant')
-			// 	.insert([assistant])
-			// 	.select()
-			// 	.single();
-			// if (assistantError) {
-			// 	throw new ConflictException(assistantError);
-			// } else {
-			// 	//registro en la tabla de users_profile
-			// 	const hashedPassword = await bcrypt.hash(assistant.identification.toString(), 10);
-			// 	const user_profile = {
-			// 		identification: assistant.identification,
-			// 		first_name: assistant.first_name,
-			// 		last_name: assistant.last_name,
-			// 		phone: assistant.phone,
-			// 		email: assistant.email,
-			// 		rol: 'assistant',
-			// 		password: hashedPassword,
-			// 	}
-			// 	const { error: userError } = await this.supabaseService.client
-			// 		.from('users_profile')
-			// 		.insert([user_profile])
-			// 		.select()
-			// 		.single();
-			// 	if (userError) {
-			// 		await this.supabaseService.client
-			// 			.from('assistant')
-			// 			.delete()
-			// 			.eq('identification', assistant.identification);
-			// 		throw new ConflictException(userError);
-			// 	}
-			// }
+			//Registramos el asistente 
+			const { data: assistantData, error: assistantError } = await this.supabaseService.client
+				.from('assistant')
+				.insert([assistant])
+				.select()
+				.single();
+			if (assistantError) {
+				throw new ConflictException(assistantError);
+			} else {
+				//registro en la tabla de users_profile
+				const hashedPassword = await bcrypt.hash(assistant.identification.toString(), 10);
+				const user_profile = {
+					identification: assistant.identification,
+					first_name: assistant.first_name,
+					last_name: assistant.last_name,
+					phone: assistant.phone,
+					email: assistant.email,
+					rol: 'assistant',
+					password: hashedPassword,
+				}
+				const { error: userError } = await this.supabaseService.client
+					.from('users_profile')
+					.insert([user_profile])
+					.select()
+					.single();
+				if (userError) {
+					await this.supabaseService.client
+						.from('assistant')
+						.delete()
+						.eq('identification', assistant.identification);
+					throw new ConflictException(userError);
+				}
+			}
 
 			//Enviamos al correo  el tiket de entrada y el bono
 		const emailResponse = await this.emailService.sendTicketEmail(transaction);
-			console.log(emailResponse);
+			
 
 
 
@@ -120,12 +120,12 @@ export class AssistantsService {
 				message: 'Asistente registrado correctamente',
 				data: [
 					{
-						identification: 0,
-						first_name: "",
-						last_name: "",
-						phone: "",
-						email: "",
-						city: "",
+						identification: assistant.identification,
+						first_name: assistant.first_name,
+						last_name: assistant.last_name,
+						phone: assistant.phone,
+						email: assistant.email,
+						city: assistant.city,
 					}
 				]
 			}

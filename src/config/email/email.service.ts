@@ -8,7 +8,7 @@ import { Transaction } from 'src/common/types/payment.type';
 @Injectable()
 export class EmailService {
   private mailerSend: MailerSend;
-  private EmailSender = "MS_2SqPkt@trial-0p7kx4x7zk7l9yjr.mlsender.net"
+  private EmailSender = "MS_48jSWV@trial-k68zxl2jj3e4j905.mlsender.net"
   private EmailSenderName = "Sistema de Notificaciones"
   private ticketInfo= {
     date: '11 de Junio 2025',

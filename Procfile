@@ -1,1 +1,1 @@
-web: yarn install --frozen-lockfile && yarn build && node dist/src/main.js
+web: yarn install --production=false && yarn build && node dist/main.js
